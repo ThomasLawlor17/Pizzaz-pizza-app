@@ -1,0 +1,24 @@
+<%- include('../partials/header') %> 
+<h1>Restaurants</h1>
+<br><br><br><br>
+<a href="/restaurants/new">Add Restaurant</a>
+<br><br>
+<table>
+    <thead>
+        <tr>
+            <th>NAME</th>
+            <th>LOCATION</th>
+            <th>PRICING</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% restaurants.forEach(function(r) { %> 
+     <tr>
+         <td><%= r.name %></td>
+         <td><%= r.location %> </td>
+         <td><%= r.price %></td>
+         <td><a href="/restaurants/<%=r.id%>">DETAILS</a></td>
+     </tr>   
+        <% }) %> 
+    </table>
+<%- include('../partials/footer') %> 

@@ -1,0 +1,36 @@
+<%- include('../partials/header') %> 
+<h1><%= restaurant.name %></h1>
+<ul>
+    <li>Location: <%= restaurant.location %> </li>
+    <li>Pricing: <%= restaurant.price %> </li>
+</ul>
+<br><br>
+<h2>Reviews</h2>
+<% if (restaurant.reviews.length) { %>
+    <% let total = 0 %> 
+    <% restaurant.reviews.forEach(function(rv) {%>
+        <%= total += rv.rating %>
+        <ul>
+            <li><%= rv.user %></li>
+            <li><%= rv.rating %></li>
+            <li><%= rv.content %></li>
+        </ul>
+        <form action="/reviews/<%=rv.id%>?_method=DELETE" method="POST">
+        <button>X</button></form>
+    <% }) %> 
+    <% } %> 
+<br><br>
+<form action="/restaurants/<%= restaurant.id %>/reviews" method="POST">
+<label>Rating: </label>
+<select name="rating">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+</select>
+<label>Commments:</label>
+<input type="text" name="content">
+<input type="submit" value="Add Review">
+</form>
+<%- include('../partials/footer') %> 
