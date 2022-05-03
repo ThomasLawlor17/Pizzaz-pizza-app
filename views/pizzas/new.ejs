@@ -29,18 +29,6 @@
                     <option value="BBQ">BBQ</option>
                     <option value="OTHER">Other</option>
                 </select></td>
-                <td><form action="/pizzas/<%= pizza._id %>/toppings" method="POST">
-                        <% toppings.categories.forEach(function(c) { %>
-                            <select name="topppings">
-                                <% if (toppings) %> 
-                                
-                            </select>
-                        <% }) %> 
-                    </select>
-                <%- toppings.map(t => { %>
-
-                <% }) %> 
-                </form></td>
             </tr>
         </tbody>
     </form>
