@@ -4,6 +4,8 @@ const rootURL = 'https://maps.googleapis.com/maps/api/place/autocomplete/json?'
 
 
 const Restaurant = require('../models/restaurant');
+const Pizza = require('../models/pizza')
+const User = require('../models/user')
 
 module.exports = {
   index,

@@ -1,6 +1,7 @@
 const Pizza = require('../models/pizza')
 const Restaurant = require('../models/restaurant')
 const Topping = require('../models/toppping')
+const User = require('../models/user')
 
 module.exports = {
     index,

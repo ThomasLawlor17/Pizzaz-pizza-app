@@ -15,7 +15,6 @@ var pizzaSchema = new Schema ({
         enum: ['CLASSIC TOMATO', 'WHITE', 'BBQ', 'OTHER'],
     },
     toppings: [{type: Schema.Types.ObjectId, ref: 'Toppings'}],
-    favourite: Boolean,
 }, {
 timestamps: true,
 })
