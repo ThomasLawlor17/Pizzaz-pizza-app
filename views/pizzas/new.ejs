@@ -1,12 +1,79 @@
-<%- include('../partials/header') %> 
-<br><br><br>
+<%- include('../partials/header') %> <br /><br /><br />
 <h1>ADD PIZZA</h1>
-<form action="/pizzas" method="POST">
-    <label>NAME</label>
-    <input type="text" name="name">
-    <label>TOPPINGS</label>
-    
+    <form action="/pizzas" method="POST">
+        <thead>
+            <tr>
+                <th>PIZZA NAME</th>
+                <th>CRUST TYPE</th>
+                <th>SAUCE TYPE</th>
+                <th>TOPPINGS</th>
+                <th>FAVOURITE</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="text" name="name"></td>
+                <td><select name="crust">
+                    <option value="CLASSIC">Classic</option>
+                    <option value="THIN">Thin</option>
+                    <option value="THICK">Thick</option>
+                    <option value="DEEP DISH">Chicago Deep Dish</option>
+                    <option value="PAN">Pan</option>
+                    <option value="GLUTEN FREE">Gluten Free</option>
+                    <option value="WHOLE WHEAT">Whole Wheat</option>
+                    <option value="OTHER">Other</option>
+                </select></td>
+                <td><select name="sauce">
+                    <option value="CLASSIC TOMATO">Classic Tomato</option>
+                    <option value="WHITE">White</option>
+                    <option value="BBQ">BBQ</option>
+                    <option value="OTHER">Other</option>
+                </select></td>
+                <td><form action="/pizzas/<%= pizza._id %>/toppings" method="POST">
+                        <% toppings.categories.forEach(function(c) { %>
+                            <select name="topppings">
+                                <% if (toppings) %> 
+                                
+                            </select>
+                        <% }) %> 
+                    </select>
+                <%- toppings.map(t => { %>
+
+                <% }) %> 
+                </form></td>
+            </tr>
+        </tbody>
+    </form>
+<br><br>
+<h2>DON'T SEE A TOPPING? ADD IT!</h2>
+<form action="/toppings" method="POST">
+	<table>
+		<thead>
+			<tr>
+				<th>Topping</th>
+				<th>Category</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><input type="text" name="name" /></td>
+				<td>
+					<select name="category">
+						<option value="MEATS">Meats</option>
+						<option value="VEGGIES">Veg</option>
+						<option value="CHEESE">Cheese</option>
+						<option value="OTHER">Other</option>
+					</select>
+				</td>
+				<td><button>submit</button></td>
+			</tr>
+		</tbody>
+	</table>
 </form>
+<ul>
+	<% toppings.forEach(function(t) { %>
+	<li><%=t.name%> | <%= t.category %></li>
+	<% }) %>
+</ul>
 
-
-<%- include('../partials/footer') %> 
+<%- include('../partials/footer') %>

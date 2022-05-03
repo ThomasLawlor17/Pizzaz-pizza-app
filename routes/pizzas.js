@@ -5,5 +5,6 @@ var pizzasCtrl = require('../controllers/pizzas')
 
 
 router.get('/pizzas', pizzasCtrl.index)
+router.get('/pizzas/new', pizzasCtrl.new)
 
 module.exports = router;

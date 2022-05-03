@@ -1,22 +1,20 @@
 var mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-var toppingsSchema = new Schema({
-    name: String,
-    category: {
-        type: String,
-        enum: ['Meats', 'Veggies', 'Cheese', 'Other']
-    },
-}, {
-    timestamps: true
-})
-
 var pizzaSchema = new Schema ({
     name: {
         type: String,
         required: true
     },
-    toppings: [toppingsSchema],
+    crust: {
+        type: String,
+        enum: ['THIN', 'THICK', 'CLASSIC', 'DEEP DISH', 'PAN', 'GLUTEN FREE', 'WHOLE WHEAT', 'OTHER'],
+    },
+    sauce: {
+        type: String,
+        enum: ['CLASSIC TOMATO', 'WHITE', 'BBQ', 'OTHER'],
+    },
+    toppings: [{type: Schema.Types.ObjectId, ref: 'Toppings'}],
     favourite: Boolean,
 }, {
 timestamps: true,

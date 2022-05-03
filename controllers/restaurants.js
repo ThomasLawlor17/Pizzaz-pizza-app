@@ -1,6 +1,6 @@
 const request = require('request')
-const token = process.env.token
-const rootURL = 'https://maps.googleapis.com/maps/api/place/textsearch/json?pizza'
+const token = process.env.GOOGLE_TOKEN
+const rootURL = 'https://maps.googleapis.com/maps/api/place/autocomplete/json?'
 
 
 const Restaurant = require('../models/restaurant');
@@ -10,7 +10,18 @@ module.exports = {
   new: newRestaurant,
   create,
   show,
+  //places
 };
+
+// function places(req, res) {
+//   const id = req.params.id
+//   const placeOps = detailsCall({
+//     url: `https://maps.googleapis.com/maps/api/js?key=${token}&callback=initMap`
+//   })
+//   Promise.all([placeOps]).then(([placeDetails] => {
+
+//   }))
+// }
 
 function index(req, res, next) {
     Restaurant.find({}, function(err, restaurants) {
