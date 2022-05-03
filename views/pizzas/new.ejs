@@ -1,6 +1,5 @@
 <%- include('../partials/header') %> <br /><br /><br />
 <h1>ADD PIZZA</h1>
-    <form action="/pizzas" method="POST">
         <thead>
             <tr>
                 <th>PIZZA NAME</th>
@@ -11,6 +10,7 @@
             </tr>
         </thead>
         <tbody>
+            <form action="/pizzas" method="POST">
             <tr>
                 <td><input type="text" name="name"></td>
                 <td><select name="crust">
@@ -29,6 +29,9 @@
                     <option value="BBQ">BBQ</option>
                     <option value="OTHER">Other</option>
                 </select></td>
+                <td><input type="text" name="toppings"></td>
+                <td><input type="checkbox" name="favourite"></td>
+                <td><input type="submit" name="add pizza"></td>
             </tr>
         </tbody>
     </form>
