@@ -26,9 +26,18 @@ module.exports = {
 // }
 
 function index(req, res, next) {
+  if (req.user) {
+    Restaurant.find({}, function(err, restaurants) {
+        User.findById(req.user.id, function(err, user) {
+            console.log(user.favouriteRestaurants)
+            res.render('restaurants/index', {title: 'Restaurants', user, restaurants})
+          })
+        })
+  } else {
     Restaurant.find({}, function(err, restaurants) {
       res.render('restaurants/index', {title: 'Restaurants', user: req.user, restaurants})
     })
+  }
 }
 
 function newRestaurant(req, res) {
@@ -50,7 +59,7 @@ function create(req, res) {
         return res.render('restaurants/new', {title: 'New Restaurant', user: req.user})
       }
       console.log(restaurant)
-      res.redirect('/')
+      res.redirect(`/restaurants/${restaurant.id}`)
     })
   }
 }

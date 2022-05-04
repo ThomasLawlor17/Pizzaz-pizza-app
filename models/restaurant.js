@@ -26,6 +26,10 @@ var restaurantSchema = new Schema ({
         type: String,
         enum: ['$', '$$', '$$$']
     },
+    image: {
+        type: Buffer,
+        contentType: String,
+    },
 }, {
     timeestamps: true,
 })

@@ -1,3 +1,15 @@
 <%- include('../partials/header') %>
+<h1>FAVOURITE RESTAURANTS</h1>
+<ul>
+    <% faveRes.forEach(function(r) { %>
+        <li><%= r.name %></li>
+    <% }) %> 
+</ul>
+<h1>FAVOURITE PIZZAS</h1>
+<ul>
+    <% favePiz.forEach(function(p) { %>
+        <li><%= p.name %></li>
+    <% }) %> 
+</ul>
 
 <%- include('../partials/footer') %> 

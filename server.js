@@ -25,6 +25,8 @@ var randomizeRouter = require('./routes/randomize')
 var favouritesRouter = require('./routes/favourites')
 var reviewsRouter = require('./routes/reviews')
 var toppingsRouter = require('./routes/toppings')
+var usersRouter = require('./routes/users')
+var adminRouter = require('./routes/admin')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -53,6 +55,8 @@ app.use('/randomize', randomizeRouter)
 app.use('/favourites', favouritesRouter)
 app.use('/', reviewsRouter)
 app.use('/', toppingsRouter)
+app.use('/', usersRouter)
+app.use('/', adminRouter)
 
 // invalid request, send 404 page
 app.use(function(req, res) {

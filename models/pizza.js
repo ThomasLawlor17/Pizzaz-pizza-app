@@ -15,6 +15,10 @@ var pizzaSchema = new Schema ({
         enum: ['CLASSIC TOMATO', 'WHITE', 'BBQ', 'OTHER'],
     },
     toppings: [{type: Schema.Types.ObjectId, ref: 'Toppings'}],
+    image: {
+        type: Buffer,
+        contentType: String,
+    },
 }, {
 timestamps: true,
 })

@@ -7,8 +7,12 @@ var userSchema = new Schema({
   email: String,
   avatar: String,
   googleId: String,
-  favouriteRestaurants: Boolean,
-  favouritePizzas: Boolean,
+  admin: {
+    type: Boolean,
+    default: false,
+  },
+  favouriteRestaurants: [{type: Schema.Types.ObjectId, ref: 'Restaurant'}],
+  favouritePizzas: [{type: Schema.Types.ObjectId, ref: 'Pizza'}],
 }, {
   timestamps: true
 });

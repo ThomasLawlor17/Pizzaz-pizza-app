@@ -11,6 +11,7 @@
             <th>NAME</th>
             <th>LOCATION</th>
             <th>PRICING</th>
+            <th>ADD FAVOURITE</th>
         </tr>
     </thead>
     <tbody>
@@ -19,7 +20,16 @@
          <td><%= r.name %></td>
          <td><%= r.location %> </td>
          <td><%= r.price %></td>
-         <td><a href="/restaurants/<%=r.id%>">DETAILS</a></td>
+         <td><a href="/restaurants/<%=r._id%>">DETAILS</a></td>
+         <% if (!user.favouriteRestaurants.includes(r.id)) { %>
+         <td><form action="restaurants/<%= r.id %>/users" method="POST">
+        <button type="submit" name="restaurantId" value="<%= r._id %>">ADD FAVOURITE</button>
+        </form></td>
+        <% } if (user.favouriteRestaurants.includes(r.id)) { %>
+            <td><form action="restaurants/<%= r.id %>/users?_method=DELETE" method="POST">
+                <button type="submit" name="restaurantId" value="<%= r._id %>">REMOVE FAVOURITE</button>
+                </form></td>
+      <%  } %> 
      </tr>   
         <% }) %> 
     </table>
