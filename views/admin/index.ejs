@@ -1,4 +1,122 @@
 <%- include('../partials/header') %> 
-
-
+<h1>RESTAURANTS</h1>
+<table>
+    <thead>
+        <tr>
+            <th>NAME</th>
+            <th>LOCATION</th>
+            <th>PRICE</th>
+            <th>PIZZAS</th>
+            <th>CURRENT IMAGE</th>
+            <th>CHANGE IMAGE</th>
+            <th>SUBMIT</th>
+            <th>DELETE</th>
+        </tr>
+    </thead>
+    <tbody>
+<% restaurants.forEach(function(r) { %>
+    <tr>
+    <form action="/restaurants/<%= r.id %>?_method=PUT" method="POST">
+        <td><input type="text" name="name" value="<%= r.name %>"></td>
+        <td><input type="text" name="location" value="<%= r.location %>"></td>
+        <td><select name="price">
+            <option value="$" <%= r.price === '$' ? 'selected' : '' %>>$</option>
+            <option value="$$"  <%= r.price === '$$' ? 'selected' : '' %>>$$</option>
+            <option value="$$$"  <%= r.price === '$$$' ? 'selected' : '' %>>$$$</option>
+        </select></td>
+        <td><ul>
+            <% r.pizzas.forEach(function(pi) { %>
+                <li><%= pi.name %></li>
+                <% }) %> 
+        </ul></td>
+        <td><img src="<%= r.image %>" alt="IMG"></td>
+        <td><input type="text" name="image"></td>
+        <td><button>SUBMIT CHANGES</button></td>
+    </form></td>
+    <td><form action="/restaurants/<%= r.id %>?_method=DELETE" method="POST">
+        <button>--X--</button>
+    </form>
+    </tr>
+<% }) %> 
+    </tbody>
+    </table>
+<br><br>
+<h1>PIZZAS</h1>
+<table>
+    <thead>
+        <tr>
+            <th>NAME</th>
+            <th>CRUST</th>
+            <th>SAUCE</th>
+            <th>TOPPINGS</th>
+            <th>CURRENT IMAGE</th>
+            <th>CHANGE IMAGE</th>
+            <th>SUBMIT</th>
+            <th>DELETE</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% pizzas.forEach(function(p) { %>
+            <form action="/pizzas/<%= p.id %>?_method=PUT" method="POST">
+            <tr>
+                <td><input type="text" name="name" value="<%= p.name %>"></td>
+                <td><select name="crust">
+                    <option value="CLASSIC" <%= p.crust === 'CLASSIC' ? 'selected' : '' %>>Classic</option>
+                    <option value="THIN" <%= p.crust === 'THIN' ? 'selected' : '' %>>Thin</option>
+                    <option value="THICK" <%= p.crust === 'THICK' ? 'selected' : '' %>>Thick</option>
+                    <option value="DEEP DISH" <%= p.crust === 'DEEP DISH' ? 'selected' : '' %>>Chicago Deep Dish</option>
+                    <option value="PAN" <%= p.crust === 'PAN' ? 'selected' : '' %>>Pan</option>
+                    <option value="GLUTEN FREE" <%= p.crust === 'GLUTEN FREE' ? 'selected' : '' %>>Gluten Free</option>
+                    <option value="WHOLE WHEAT" <%= p.crust === 'WHOLE WHEAT' ? 'selected' : '' %>>Whole Wheat</option>
+                    <option value="OTHER" <%= p.crust === 'OTHER' ? 'selected' : '' %>>Other</option>
+                </select></td>
+                <td><select name="sauce">
+                    <option value="CLASSIC TOMATO" <%= p.sauce === 'CLASSIC TOMATO' ? 'selected' : '' %>>Classic Tomato</option>
+                    <option value="WHITE" <%= p.sauce === 'WHITE' ? 'selected' : '' %>>White</option>
+                    <option value="BBQ" <%= p.sauce === 'BBQ' ? 'selected' : '' %>>BBQ</option>
+                    <option value="OTHER" <%= p.sauce === 'OTHER' ? 'selected' : '' %>>Other</option>
+                </select></td>
+                <td><input type="text" name="toppings" value="<%= p.toppings %>"></td>
+                <td><img src="<%= p.image %>" alt=""></td>
+                <td><input type="text" name="image"></td>
+                <td><button>SUBMIT CHANGES</button></td>
+            </form></td>
+                <td><form action="/pizzas/<%= p.id %>delete?_method=DELETE" method="POST">
+                    <button>--X--</button>
+            </tr>
+        </form>
+        <% }) %> 
+    </tbody>
+</table>
+<br><br>
+<h1>TOPPINGS</h1>
+<table>
+    <thead>
+        <tr>
+            <th>NAME</th>
+            <th>CATEGORY</th>
+            <th>SAVE CHANGES</th>
+            <th>DELETE</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% toppings.forEach(function(t) { %>
+            <form action="/toppings/<%= t.id %>?_method=PUT" method="POST">
+            <tr>
+                <td><input type="text" name="name" value="<%= t.name %>"></td>
+                <td><select name="category">
+                    <option value="MEATS" <%= t.category === 'MEATS' ? 'selected' : '' %>>Meats</option>
+                    <option value="VEGGIES" <%= t.category === 'VEGGIES' ? 'selected' : '' %>>Veg</option>
+                    <option value="CHEESE" <%= t.category === 'CHEESE' ? 'selected' : '' %>>Cheese</option>
+                    <option value="OTHER" <%= t.category === 'OTHER' ? 'selected' : '' %>>Other</option>
+                </select></td>
+                <td><button>SUBMIT CHANGES</button></td>
+            </form>
+                <td><form action="/toppings/<%= t.id %>?_method=DELETE" method="POST">
+                <button>--X--</button>
+            </form></td>
+            </tr>
+        <% }) %> 
+    </tbody>
+</table>
 <%- include('../partials/footer') %> 

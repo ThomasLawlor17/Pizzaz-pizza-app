@@ -1,3 +1,4 @@
+const { type } = require('express/lib/response')
 var mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
@@ -14,7 +15,8 @@ var pizzaSchema = new Schema ({
         type: String,
         enum: ['CLASSIC TOMATO', 'WHITE', 'BBQ', 'OTHER'],
     },
-    toppings: [{type: Schema.Types.ObjectId, ref: 'Toppings'}],
+    toppings: [String],
+    //toppings: [{type: Schema.Types.ObjectId, ref: 'Toppings'}],
     image: {
         type: Buffer,
         contentType: String,

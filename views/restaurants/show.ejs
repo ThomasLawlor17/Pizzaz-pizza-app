@@ -4,6 +4,16 @@
     <li>Location: <%= restaurant.location %> </li>
     <li>Pricing: <%= restaurant.price %> </li>
 </ul>
+<% if (user) { %> 
+    <% if (!user.favouriteRestaurants.includes(restaurant.id)) { %>
+    <div class="favourite-form"><form action="<%= restaurant.id %>/users" method="POST">
+   <button type="submit" name="restaurantId" value="<%= restaurant._id %>">ADD FAVOURITE</button>
+   </form></div>
+   <% } if (user.favouriteRestaurants.includes(restaurant.id)) { %>
+       <div class="favourite-form"><form action="<%= restaurant.id %>/users?_method=DELETE" method="POST">
+           <button type="submit" name="restaurantId" value="<%= restaurant._id %>">REMOVE FAVOURITE</button>
+           </form></div>
+ <%  }} %> 
 <br><br>
 <h2>Reviews</h2>
 <% if (restaurant.reviews.length) { %>

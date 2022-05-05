@@ -1,3 +1,23 @@
 <%- include('./partials/header') %>
+<div class="background-home">
+    <div class="title-container-home">
+<h1 class="main-title">PIZZAZ</h1>
+<h2>IT'S A PIZZ-APP-PIE</h2>
+</div>
+<br>
+<h3 class="status-update">CURRENT STATUS: BUILDING RANDOM GENERATOR AND GOOGLE PLACES API TO POPULATE RESTAURANTS</h3>
+<br>
+<div class="image-container"><img class="main-logo" src="https://i.imgur.com/Kv2FXdw.png"></div>
+<div class="home-buttons">
+<% if (user) { %> 
+<button class="main-links-button"><a class="main-links" id="main-login-home" href="/logout">LOGOUT</a></button>
+<% } else { %>
+<button class="main-links-button"><a class="main-links" id="main-login-home" href="/auth/google">LOGIN WITH GOOGLE</a></button>
+<% } %> 
+<button class="main-links-button"><a class="main-links" id="main-restaurants-home" href="/restaurants">VIEW ALL RESTAURANTS</a></button>
+<button class="main-links-button"><a class="main-links" id="main-pizzas-home" href="/pizzas">VIEW ALL PIZZA</a></button>
+</div>
+</div>
+
 
 <%- include('./partials/footer') %> 

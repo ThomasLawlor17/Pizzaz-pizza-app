@@ -1,4 +1,4 @@
-<%- include('../partials/header') %> <br /><br /><br />
+<%- include('../partials/header') %>
 <h1>ADD PIZZA</h1>
         <thead>
             <tr>
@@ -6,11 +6,10 @@
                 <th>CRUST TYPE</th>
                 <th>SAUCE TYPE</th>
                 <th>TOPPINGS</th>
-                <th>FAVOURITE</th>
             </tr>
         </thead>
         <tbody>
-            <form action="/pizzas" method="POST">
+            <form action="/pizzas" method="POST" enctype="multipart/form-data">
             <tr>
                 <td><input type="text" name="name"></td>
                 <td><select name="crust">
@@ -30,14 +29,14 @@
                     <option value="OTHER">Other</option>
                 </select></td>
                 <td><input type="text" name="toppings"></td>
-                <td><input type="checkbox" name="favourite"></td>
-                <td><input type="submit" name="add pizza"></td>
+                <td><input type="file" name="image" id="pizza-image-upload"></td>
+                <td><input type="submit"></td>
             </tr>
         </tbody>
     </form>
 <br><br>
 <h2>DON'T SEE A TOPPING? ADD IT!</h2>
-<form action="/toppings" method="POST">
+<!-- <form action="/toppings" method="POST">
 	<table>
 		<thead>
 			<tr>
@@ -62,9 +61,9 @@
 	</table>
 </form>
 <ul>
-	<% toppings.forEach(function(t) { %>
-	<li><%=t.name%> | <%= t.category %></li>
-	<% }) %>
+	<%// toppings.forEach(function(t) { %>
+	<li><%=// t.name %> | <%=// t.category %></li>
+	<%// }) %>
 </ul>
-
+-->
 <%- include('../partials/footer') %>

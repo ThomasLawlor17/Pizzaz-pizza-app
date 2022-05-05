@@ -1,4 +1,5 @@
 var mongoose = require('mongoose')
+const { toBase64 } = require('request/lib/helpers')
 const Schema = mongoose.Schema
 const token = process.env.GOOGLE_TOKEN
 const rootURL = 'https://maps.googleapis.com/maps/api/place/autocomplete/json?'
@@ -27,8 +28,7 @@ var restaurantSchema = new Schema ({
         enum: ['$', '$$', '$$$']
     },
     image: {
-        type: Buffer,
-        contentType: String,
+        type: String
     },
 }, {
     timeestamps: true,

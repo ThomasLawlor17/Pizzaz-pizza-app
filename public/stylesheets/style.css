@@ -1,4 +1,4 @@
-* {
+ * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -84,6 +84,7 @@ input[type=checkbox] {
   }
   input[type=checkbox]:checked ~ .menu {
     display: block;
+    border-bottom: solid 5px goldenrod;
   }
   .hamburger {
     display: block;
@@ -130,4 +131,64 @@ footer a {
 
 .my-links a {
   align-items: center;
+}
+
+
+
+.background-home {
+  border-top: goldenrod 5px solid;
+  background-color: maroon;
+  margin-bottom: 25px;
+}
+
+.title-container-home {
+  color: #FDFBF6;
+  text-align: center;
+}
+
+.main-title {
+  color: goldenrod;
+}
+
+.status-update {
+  color: #FDFBF6;
+  text-align: center;
+}
+
+.main-links-button {
+  width: 150px;
+  height: 50px;
+  border-radius: 4px;
+  margin: 0 5px 10px 5px;
+  background-color: #EB6464 ;
+  border: solid #FDFBF6 3px;
+}
+.main-links {
+  color: #FDFBF6;
+  text-decoration: none;
+}
+
+.home-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+}
+
+
+@media only screen and (max-width: 768px){
+  .main-logo {
+    width: -webkit-fill-available;
+  }
+  .main-title {
+    font-size: 50px;
+  }
+  .home-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }

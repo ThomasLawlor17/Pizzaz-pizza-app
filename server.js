@@ -49,7 +49,7 @@ app.use(passport.session())
 
 // mount all routes with appropriate base paths
 app.use('/', indexRouter);
-app.use('/restaurants', restaurantsRouter);
+app.use('/', restaurantsRouter);
 app.use('/', pizzasRouter)
 app.use('/randomize', randomizeRouter)
 app.use('/favourites', favouritesRouter)

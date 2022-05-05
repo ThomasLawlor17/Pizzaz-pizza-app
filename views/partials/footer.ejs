@@ -1,15 +1,15 @@
 </main>
-</body>
 <footer>
     <div class="footer">
-        <ul class="footer-list">
-            <% if (user.admin) { %>
+        <ul class="footer-list"> 
+            <%if (user) { if (user.admin) { %>
                 <li class="admin"><a id="admin" href="/admin">ADMIN</a></li>
-            <% } else { console.log('New User')} %> 
+            <% }} else { console.log('New User')} %> 
             <li class="my-links">CREATOR LINKS: </li>
             <li class="my-links"><a href="https://github.com/ThomasLawlor17"><img id="github-logo" src="https://i.imgur.com/mN9veEq.png" alt="GIT"></a></li>
             <li class="my-links"><a href="https://www.linkedin.com/in/thomas-lawlor-8838b8114/"><img id="linkedin-logo" src="https://i.imgur.com/7wpGfeE.png" alt="LKD"></a></li>
         </ul>
     </div>
 </footer>
+</body>
 </html>

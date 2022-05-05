@@ -1,5 +1,25 @@
 <%- include('../partials/header') %>
 <h1>PIZZA</h1>
-<a href="/pizzas/new">Add Pizza</a>
+<% if (user) { %>
+    <a href="/pizzas/new">CREATE PIZZA</a>
+<% } %> 
+<div class="pizza-board">
+    <% pizzas.forEach(function(p) { %>
+        <div class="piz-image"><img src="<%= p.image %>"></div>
+        <div class="pizza-name-container"><%= p.name %></div>
+        <div class="toppings"><%= p.toppings %></div>
+        <div class="details-link"><a href="/pizzas/<%= p.id %>">VIEW</a></div>
+        <% if (user) { %> 
+            <% if (!user.favouritePizzas.includes(p.id)) { %>
+            <div class="favourite-form"><form action="pizzas/<%= p.id %>/users" method="POST">
+           <button type="submit" name="pizzaId" value="<%= p._id %>">ADD FAVOURITE</button>
+           </form></div>
+           <% } if (user.favouritePizzas.includes(p.id)) { %>
+               <div class="favourite-form"><form action="pizzas/<%= p.id %>/users?_method=DELETE" method="POST">
+                   <button type="submit" name="pizzaId" value="<%= p._id %>">REMOVE FAVOURITE</button>
+                   </form></div>
+         <%  }} %> 
+    <% }) %> 
+</div>
 
 <%- include('../partials/footer') %> 
