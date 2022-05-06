@@ -13,6 +13,7 @@ module.exports = {
     deleteTop,
 }
 
+// GET all restaurants/pizzas/users/toppings for editiong
 function index(req, res) {
     if (req.user.admin) {
         Restaurant.find({}, function(err, restaurants) {
@@ -20,7 +21,7 @@ function index(req, res) {
                 User.find({}, function(err, users) {
                     Topping.find({}, function(err, toppings) {
                         console.log(req.user)
-                        res.render('admin/index', {title: 'Admin', restaurants, pizzas, users, toppings, user: req.user})
+                        res.render('admin/index', {title: 'ADMIN', restaurants, pizzas, users, toppings, user: req.user})
                     })
                 })
             })

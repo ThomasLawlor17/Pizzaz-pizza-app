@@ -8,6 +8,7 @@ module.exports = {
 
 function create(req, res) {
     if (req.user) {
+        // If user is logged in allow fo rcreating comments
         Restaurant.findById(req.params.id, function(err, restaurant) {
             console.log('USERNAME: ', req.user.name)
             req.body.username = req.user.name
@@ -24,6 +25,7 @@ function create(req, res) {
 }
 
 function deleteReview(req, res) {
+    // If user created the review allow them to delete it
     Restaurant.find({'reviews._id': req.params.id}, function(err, restaurants) {
         Restaurant.findById(restaurants[0]._id, function(err, restaurant) {
         restaurant.reviews.id(req.params.id).remove()

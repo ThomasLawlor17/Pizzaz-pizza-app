@@ -17,6 +17,7 @@ module.exports = {
 	//places
 };
 
+// USING GOOGLE PLACE API (UNDER CONSTRUCTION)
 let placesCall = (options) => {
 	return new Promise ((resolve, reject) => {
 		request(options, function(err, res, body) {
@@ -40,6 +41,7 @@ let placesCall = (options) => {
 
 function index(req, res, next) {
 	if (req.user) {
+		// If logged in find favourite restaurants for adding/removing
 		Restaurant.find({}, function (err, restaurants) {
 			User.findById(req.user.id, function (err, user) {
 				console.log(user.favouriteRestaurants);
@@ -51,6 +53,7 @@ function index(req, res, next) {
 			});
 		});
 	} else {
+		// not logged in don't render favourite options
 		Restaurant.find({}, function (err, restaurants) {
 			res.render("restaurants/index", {
 				title: "Restaurants",
@@ -70,7 +73,9 @@ function newRestaurant(req, res) {
 }
 
 function create(req, res) {
+	// If restaurant name exists don't allow
 	if (Restaurant.findOne({ name: req.body.name } === null)) {
+		// If picture is uploaded
 		if (req.file) {
 			console.log(req.file);
 			let image = base64_encode(req.file.path);
@@ -98,6 +103,7 @@ function create(req, res) {
 				});
 			});
 		} else {
+			// No picture use default image
 			req.body.image = "https://i.imgur.com/Y3Qm1Tg.png";
 			const restaurant = new Restaurant(req.body);
 			restaurant.save(function (err, restaurant) {
@@ -105,22 +111,10 @@ function create(req, res) {
 			});
 		}
 	} else {
+	// if restaurant exists redirect to index
     res.redirect('/restaurants')
   }
 }
-
-//       console.log(req.body)
-//     const restaurant = new Restaurant(req.body)
-//     restaurant.save(function(err) {
-//       if (err) {
-//         console.log(err)
-//         return res.render('restaurants/new', {title: 'New Restaurant', user: req.user})
-//       }
-//       console.log(restaurant)
-//       res.redirect(`/restaurants/${restaurant.id}`)
-//     })
-//   }
-// }
 
 function show(req, res) {
 	Restaurant.findById(req.params.id, function (err, restaurant) {

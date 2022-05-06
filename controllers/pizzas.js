@@ -32,7 +32,9 @@ function newPizza(req, res) {
 }
 
 function create(req, res) {
+	// if pizza does not exist yet
 	if (Pizza.findOne({ name: req.body.name } === null)) {
+		// if image uploaded
 		if (req.file) {
 			console.log(req.file);
 			let image = base64_encode(req.file.path);
@@ -60,6 +62,7 @@ function create(req, res) {
 				});
 			});
 		} else {
+			// no image upload set to default
             console.log('BODY: ', req.body)
 			req.body.image = "https://i.imgur.com/Kv2FXdw.png";
 			const pizza = new Pizza(req.body);
@@ -68,6 +71,7 @@ function create(req, res) {
 			});
 		}
 	} else {
+	// if pizza name alreaddy exists
     res.redirect('/pizzas/new')
   }
 }

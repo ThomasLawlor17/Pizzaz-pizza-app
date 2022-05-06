@@ -6,6 +6,7 @@ module.exports = {
 	index,
 };
 
+//GET user favourites from IDs and populate into page
 function index(req, res) {
 	if (req.user) {
         console.log('FULL USER: ', req.user)
@@ -28,6 +29,7 @@ function index(req, res) {
 				});
 			});
  	} else {
+         //redirect to login
  		res.redirect("/auth/google");
  	}
  }
