@@ -1,24 +1,39 @@
 <%- include('../partials/header') %> 
 <h1>Restaurants</h1>
 <% if (user) { %>
-    <a href="/restaurants/new">CREATE RESTAURANT</a>
+    <div class="new-restaurant-a">
+    <a href="/restaurants/new"><button class="new-restaurant-link">CREATE RESTAURANT</button></a>
+    </div>
 <% } %> 
-<div class="restaurant-board">
+<div class="index-board">
     <% restaurants.forEach(function(r) { %>
-        <div class="res-image"><img src="<%= r.image %>"></div>
-        <div class="name-container"><%= r.name %></div>
-        <div class="location"><%= r.location %></div>
-        <div class="details-link"><a href="/restaurants/<%= r.id %>">VIEW</a></div>
+        <div class="index-box">
+        <div class="index-image"><a href="/restaurants/<%= r.id %>"><img id="index-image" src="<%= r.image %>"></a></div>
+        <div class="name-container"><h2><%= r.name %></h2></div>
+        <div class="restaurant-rating">
+            <%  let total = 0; %>
+            <% if (r.reviews.length > 0) { %>
+                <% r.reviews.forEach(function(rv) { %>
+                    <% total += rv.rating %>
+                <% }) %>
+                <%= (total/r.reviews.length).toFixed(2) %>
+            <% } %> 
+        </div>
+        <div class="restaurant-links">
+        <div class="website"><a href="<%= r.website %>"><button class="website-button">WEBSITE</button></a></div>
         <% if (user) { %> 
             <% if (!user.favouriteRestaurants.includes(r.id)) { %>
             <div class="favourite-form"><form action="restaurants/<%= r.id %>/users" method="POST">
-           <button type="submit" name="restaurantId" value="<%= r._id %>">ADD FAVOURITE</button>
+           <button class="favourite-button" type="submit" name="restaurantId" value="<%= r._id %>">ADD FAVOURITE</button>
            </form></div>
            <% } if (user.favouriteRestaurants.includes(r.id)) { %>
                <div class="favourite-form"><form action="restaurants/<%= r.id %>/users?_method=DELETE" method="POST">
-                   <button type="submit" name="restaurantId" value="<%= r._id %>">REMOVE FAVOURITE</button>
+                   <button class="favourite-button" type="submit" name="restaurantId" value="<%= r._id %>">REMOVE FAVOURITE</button>
                    </form></div>
          <%  }} %> 
+        </div>
+        </div>
     <% }) %> 
+</div>
 </div>
 <%- include('../partials/footer') %> 

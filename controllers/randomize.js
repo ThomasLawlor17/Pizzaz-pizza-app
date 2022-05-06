@@ -7,18 +7,18 @@ module.exports = {
 }
 
 function index(req, res) {
-    if (user) {
-    Restaurant.find({}, function(err, restaurants) {
-        Pizza.find({}, function(err, pizzas) {
+    if (req.user) {
+    Restaurant.findOne({ $sample: {size: 1 } }, function(err, restaurant) {
+        Pizza.findOne({ $sample: {size: 1 }}, function(err, pizza) {
             User.findById(req.user.id, function(err, user) {
-                res.render('randomize/index', {title: 'Randomize', user, pizzas, restaurants})
+                res.render('randomize/index', {title: 'Randomize', user, pizza, restaurant})
             })
         })
     })
 } else {
     Restaurant.find({}, function(err, restaurants) {
         Pizza.find({}, function(err, pizzas) {
-            res.render('/randomize/index', restaurants, pizzas)
+            res.render('randomize/index', {restaurants, pizzas, user: false, pizza: false, restaurant: false, title: 'RANDOMIZE'})
         })
     })
 }}

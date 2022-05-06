@@ -9,7 +9,9 @@ module.exports = {
 function create(req, res) {
     if (req.user) {
         Restaurant.findById(req.params.id, function(err, restaurant) {
-            user = req.user
+            console.log('USERNAME: ', req.user.name)
+            req.body.username = req.user.name
+            req.body.userId = req.user.id
             restaurant.reviews.push(req.body)
             restaurant.save(function(err) {
                 console.log(restaurant)

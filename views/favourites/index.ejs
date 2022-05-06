@@ -1,15 +1,34 @@
 <%- include('../partials/header') %>
 <h1>FAVOURITE RESTAURANTS</h1>
-<ul>
+    <div class="index-board">
     <% faveRes.forEach(function(r) { %>
-        <li><%= r.name %></li>
+        <div class="index-box">
+            <div class="index-image"><a href="/restaurants/<%= r.id %>"><img id="index-image" src="<%= r.image %>"></a></div>
+            <div class="name-container"><h2><%= r.name %></h2></div>
+            <div class="restaurant-rating">
+                <%  let total = 0; %>
+                <% if (r.reviews.length > 0) { %>
+                    <% r.reviews.forEach(function(rv) { %>
+                        <% total += rv.rating %>
+                    <% }) %>
+                    <%= (total/r.reviews.length).toFixed(2) %>
+                <% } %> 
+            </div>
+            <div class="website"><a href="<%= r.website %>"><button class="website-button">WEBSITE</button></a></div>
+            </div>
     <% }) %> 
-</ul>
+</div>
 <h1>FAVOURITE PIZZAS</h1>
-<ul>
+<div class="index-board">
     <% favePiz.forEach(function(p) { %>
-        <li><%= p.name %></li>
+        <div class="index-box">
+            <div class="index-image"><img id="index-image" src="<%= p.image %>"></div>
+            <div class="name-container"><h2><%= p.name %></h2></div>
+            <div class="toppings"><%= p.toppings %></div>
+            <div class="restaurants-available"></div>
+        </div>
     <% }) %> 
-</ul>
+</div>
+<div class="border"></div>
 
 <%- include('../partials/footer') %> 

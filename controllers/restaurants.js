@@ -1,12 +1,13 @@
 const request = require("request");
 const fs = require("fs");
 const token = process.env.GOOGLE_TOKEN;
-const rootURL = "https://maps.googleapis.com/maps/api/place/autocomplete/json?";
+const rootURL = ""
 
 const Restaurant = require("../models/restaurant");
 const Pizza = require("../models/pizza");
 const User = require("../models/user");
-const { post } = require("../routes");
+const { resolve } = require("path");
+const res = require("express/lib/response");
 
 module.exports = {
 	index,
@@ -15,6 +16,17 @@ module.exports = {
 	show,
 	//places
 };
+
+let placesCall = (options) => {
+	return new Promise ((resolve, reject) => {
+		request(options, function(err, res, body) {
+			if(!err && res.satuscode == 200) {
+				resolve(JSON.parse(body))
+			}
+			reject(err)
+		})
+	})
+}
 
 // function places(req, res) {
 //   const id = req.params.id
@@ -58,41 +70,43 @@ function newRestaurant(req, res) {
 }
 
 function create(req, res) {
-	if (req.user) {
+	if (Restaurant.findOne({ name: req.body.name } === null)) {
 		if (req.file) {
-      console.log(req.file);
-		let image = base64_encode(req.file.path);
+			console.log(req.file);
+			let image = base64_encode(req.file.path);
 
-		const options = {
-			method: "POST",
-			url: "https://api.imgur.com/3/image",
-			headers: {
-				Authorization: `Client-ID ${process.env.IMGUR_CLIENT_ID}`,
-			},
-			formData: {
-				image: image,
-				type: "base64",
-			},
-		};
-		request(options, function (err, response) {
-			if (err) return console.log(err);
-			let body = JSON.parse(response.body);
-			console.log(body);
-			req.body.image = body.data.link;
-      const restaurant = new Restaurant(req.body)
-      restaurant.save(function(err, restaurant) {
-        console.log(restaurant)
-        res.redirect(`/restaurant/${restaurant.id}`)
-      })
-		});
+			const options = {
+				method: "POST",
+				url: "https://api.imgur.com/3/image",
+				headers: {
+					Authorization: `Client-ID ${process.env.IMGUR_CLIENT_ID}`,
+				},
+				formData: {
+					image: image,
+					type: "base64",
+				},
+			};
+			request(options, function (err, response) {
+				if (err) return console.log(err);
+				let body = JSON.parse(response.body);
+				console.log(body);
+				req.body.image = body.data.link;
+				const restaurant = new Restaurant(req.body);
+				restaurant.save(function (err, restaurant) {
+					console.log(restaurant);
+					res.redirect(`/restaurant/${restaurant.id}`);
+				});
+			});
+		} else {
+			req.body.image = "https://i.imgur.com/Y3Qm1Tg.png";
+			const restaurant = new Restaurant(req.body);
+			restaurant.save(function (err, restaurant) {
+				res.redirect(`/restaurants/${restaurant.id}`);
+			});
+		}
 	} else {
-    req.body.image = 'https://i.imgur.com/Y3Qm1Tg.png'
-    const restaurant = new Restaurant(req.body)
-    restaurant.save(function(err, restaurant) {
-      res.redirect(`/restaurants/${restaurant.id}`)
-    })
+    res.redirect('/restaurants')
   }
-}
 }
 
 //       console.log(req.body)

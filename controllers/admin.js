@@ -38,14 +38,14 @@ function updateRes(req, res) {
 }
 
 function updatePiz(req, res) {
-    Pizza.findByIdAndUpdate(req,params.id, req.body, function(err, pizza) {
+    Pizza.findByIdAndUpdate(req.params.id, req.body, function(err, pizza) {
         console.log(pizza)
         res.redirect('/admin')
     })
 }
 
 function updateTop(req, res) {
-    Topping.findByIdAndUpdate(req,params.id, req.body, function(err, topping) {
+    Topping.findByIdAndUpdate(req.params.id, req.body, function(err, topping) {
         console.log(topping)
         res.redirect('/admin')
     })

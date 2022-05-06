@@ -1,18 +1,14 @@
 <%- include('../partials/header') %>
 <h1>ADD PIZZA</h1>
-        <thead>
-            <tr>
-                <th>PIZZA NAME</th>
-                <th>CRUST TYPE</th>
-                <th>SAUCE TYPE</th>
-                <th>TOPPINGS</th>
-            </tr>
-        </thead>
-        <tbody>
+<br>
+<h3>CANNOT BE CHANGED LATER BY USER</h3>
+<br>
+<div class="new-form">
             <form action="/pizzas" method="POST" enctype="multipart/form-data">
-            <tr>
-                <td><input type="text" name="name"></td>
-                <td><select name="crust">
+                <label>NAME: </label>
+                <input type="text" name="name" autocapitalize="characters"><br>
+                <label>CRUST: </label>
+                <select name="crust">
                     <option value="CLASSIC">Classic</option>
                     <option value="THIN">Thin</option>
                     <option value="THICK">Thick</option>
@@ -21,22 +17,24 @@
                     <option value="GLUTEN FREE">Gluten Free</option>
                     <option value="WHOLE WHEAT">Whole Wheat</option>
                     <option value="OTHER">Other</option>
-                </select></td>
-                <td><select name="sauce">
+                </select><br>
+                <label>SAUCE: </label>
+                <select name="sauce">
                     <option value="CLASSIC TOMATO">Classic Tomato</option>
                     <option value="WHITE">White</option>
                     <option value="BBQ">BBQ</option>
                     <option value="OTHER">Other</option>
-                </select></td>
-                <td><input type="text" name="toppings"></td>
-                <td><input type="file" name="image" id="pizza-image-upload"></td>
-                <td><input type="submit"></td>
-            </tr>
-        </tbody>
+                </select><br>
+                <label>TOPPINGS: </label>
+                <input type="text" name="toppings"><br>
+                <label>ADD IMAGE: </label>
+                <input type="file" name="image" id="pizza-image-upload" value="ADD IMAGE"><br><br>
+                <input class="submit-button" type="submit">
     </form>
+    </div>
 <br><br>
-<h2>DON'T SEE A TOPPING? ADD IT!</h2>
-<!-- <form action="/toppings" method="POST">
+<!--<h2>DON'T SEE A TOPPING? ADD IT!</h2>
+ <form action="/toppings" method="POST">
 	<table>
 		<thead>
 			<tr>

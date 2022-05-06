@@ -134,10 +134,8 @@ footer a {
 }
 
 
-
 .background-home {
   border-top: goldenrod 5px solid;
-  background-color: maroon;
   margin-bottom: 25px;
 }
 
@@ -178,6 +176,221 @@ footer a {
   justify-content: center;
 }
 
+.new-form {
+  font-size: 20px;
+  padding: 5px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center
+}
+
+
+.admin-image {
+  max-width: 300px;
+}
+
+.admin-delete {
+  margin-left: 10px;
+}
+
+h1,
+h3 {
+  text-align: center;
+}
+
+.border {
+  margin-bottom: 80px;
+}
+
+.submit-button {
+  border: none;
+  border-radius: 5px;
+  background-color: maroon;
+  color: #FDFBF6;
+  width: 300px;
+}
+
+.submit-button:hover {
+  cursor: pointer;
+  background-color: #EB6464;
+}
+.name-container {
+  font-weight: bold;
+}
+.toppings {
+  display: flex;
+}
+
+.show-title {
+  color: #FDFBF6;
+  font-size: 80px;
+  margin: 20px 0 20px 0;
+}
+
+.show-image {
+  border: solid 4px goldenrod;
+  border-radius: 15px;
+}
+
+.website-button,
+.favourite-button,
+.delete-review-button,
+.add-review-button,
+.new-pizza-link,
+.new-restaurant-link {
+  background-color: #FDFBF6;
+  border: solid 3px goldenrod;
+  border-radius: 15px;
+  width: 150px;
+}
+
+.website-button:hover,
+.favourite-button:hover,
+.delete-review-button:hover,
+.add-review-button:hover,
+.new-pizza-link:hover,
+.new-restaurant-link:hover {
+  background-color: #EB6464;
+  color: #FDFBF6;
+  cursor: pointer;
+}
+.show-list li {
+  margin-bottom: 20px;
+}
+.show-location,
+.show-price {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+}
+
+.add-review {
+  text-align: center;
+}
+.add-rating {
+  border: solid 3px goldenrod;
+  border-radius: 15px;
+  width: 40px;
+}
+.add-review-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.add-review-form div {
+  margin-bottom: 10px;
+}
+textarea {
+  max-width: 500px;
+}
+
+@media only screen and (min-width: 768px) {
+  .index-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin: 15px;
+  }
+  .index-box {
+    width: 100%;
+    text-align: center;
+
+  }
+  #index-image {
+    max-width: 100%;
+    border: solid maroon 5px;
+    border-radius: 15px;
+    max-height: 400px;
+  }
+  .show-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 2fr 250px 1fr;
+    margin: 5px 30px 0 30px;
+  }
+  .show-image {
+    grid-row-start: 1;
+    grid-row-end: span 2;
+    justify-self: center;
+    max-width: 100%;
+    max-height: 500px;
+    min-height: 300px;
+  }
+  .show-reviews h2,
+  .show-info h2,
+  .add-review h2 {
+    color: goldenrod;
+    font-size: 40px;
+    text-decoration: underline;
+    text-align: center;
+  }
+  .show-reviews {
+    grid-row-start: 2;
+  }
+  .add-review {
+    margin: 10px
+  }
+  .show-info {
+    margin: 15px;
+  }
+  .show-list-title {
+    font-size: 30px;
+    margin-right: 10px;
+  }
+  .show-reviews {
+    margin: 15px;
+  }
+  .show-reviews-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr repeat(1fr);
+  }
+  .total-rating {
+    grid-column-start: 1;
+    grid-row-start: 1;
+    font-size: 40px;
+    margin-top: 5px;
+  }
+  .show-reviews-grid h2 {
+    grid-row-start: 1;
+    grid-column-end: 3;
+    grid-column-start: 1;
+    text-align: center;
+  }
+  .review-each {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    border-bottom: solid 3px goldenrod;
+  }
+  .review-each-flex {
+    display: flex;
+    flex-direction: column;
+  }
+  .review-list {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
+  .review-content {
+    margin: 5px 0 5px 15px;
+  }
+  .review-list li {
+    margin-right: 10px;
+  }
+  .main-title {
+    font-size: 80px;
+  }
+  .main-logo {
+    max-height: 600px;
+  }
+}
+.new-pizza-a,
+.new-restaurant-a {
+  text-align: center;
+}
+
 
 @media only screen and (max-width: 768px){
   .main-logo {
@@ -191,4 +404,143 @@ footer a {
     flex-direction: column;
     align-items: center;
   }
+  #index-image {
+    width: -webkit-fill-available;
+    max-width: 100%;
+    margin: 20px;
+    border-radius: 15px;
+    border: solid maroon 3px;
+  }
+  .name-container {
+    text-align: center;
+    font-size: larger;
+  }
+  .restaurant-links {
+    display: grid;
+    grid-template-columns: 2;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 25px;
+  }
+  .show-image {
+    max-width: -webkit-fill-available;
+    margin: 15px;
+  }
+  .show-title {
+    font-size: 50px;
+  }
+  .show-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+  }
+  .show-info h2,
+  .show-reviews h2,
+  .add-review h2 {
+    text-align: center;
+    text-decoration: underline;
+    font-size: 30px;
+  }
+  .show-list {
+    font-size: 15px;
+    margin: 5px;
+  }
+  .show-location {
+    font-size: 14px;
+  }
+  .show-list-title {
+    margin-right: 4px;
+    font-size: 20px;
+  }
+  .show-website {
+    text-align: center;
+  }
+  .favourite-form {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .show-reviews-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr repeat(1fr);
+  }
+  .total-rating {
+    grid-column-start: 1;
+    grid-row-start: 1;
+    font-size:30px;
+    margin-top: 5px;
+    margin-left: 8px;
+  }
+  .show-reviews-grid h2 {
+    grid-row-start: 1;
+    grid-column-end: 3;
+    grid-column-start: 1;
+    text-align: center;
+  }
+  .review-each {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    border-bottom: solid 3px goldenrod;
+    margin-left: 8px;
+  }
+  .review-each-flex {
+    display: flex;
+    flex-direction: column;
+  }
+  .review-list {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
+  .review-content {
+    margin: 5px 0 5px 15px;
+  }
+  .review-list li {
+    margin-right: 10px;
+  }
+  .index-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 2fr 60px 90px;
+    justify-content: center;
+    align-content: center;
+  }
+  .index-image {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+  .name-container {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+  .restaurant-rating {
+    text-align: center;
+    font-size: 30px;
+  }
+  .website-button,
+  .favourite-button {
+  background-color: maroon;
+  color: #FDFBF6;
+  border: solid 3px goldenrod;
+  border-radius: 15px;
+  width: 150px;
+  margin-bottom: 10px;
+  }
+  .website {
+    justify-items: center;
+    align-items: center;
+  }
+  .status-update {
+    font-size: 14px;
+  }
+  .index-board {
+    text-align: center;
+  }
+  .favourite-form {
+    margin-top: 10px;
+  }
 }
+
+
+

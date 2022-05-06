@@ -29,11 +29,11 @@
                 <li><%= pi.name %></li>
                 <% }) %> 
         </ul></td>
-        <td><img src="<%= r.image %>" alt="IMG"></td>
-        <td><input type="text" name="image"></td>
+        <td><img class="admin-image" src="<%= r.image %>" alt="IMG"></td>
+        <td><input type="text" name="image" value="<%= r.image %>"></td>
         <td><button>SUBMIT CHANGES</button></td>
     </form></td>
-    <td><form action="/restaurants/<%= r.id %>?_method=DELETE" method="POST">
+    <td><form  class="admin-delete" action="/restaurants/<%= r.id %>?_method=DELETE" method="POST">
         <button>--X--</button>
     </form>
     </tr>
@@ -77,12 +77,12 @@
                     <option value="OTHER" <%= p.sauce === 'OTHER' ? 'selected' : '' %>>Other</option>
                 </select></td>
                 <td><input type="text" name="toppings" value="<%= p.toppings %>"></td>
-                <td><img src="<%= p.image %>" alt=""></td>
-                <td><input type="text" name="image"></td>
+                <td><img class="admin-image" src="<%= p.image %>" alt=""></td>
+                <td><input type="text" name="image" value="<%= p.image %>"></td>
                 <td><button>SUBMIT CHANGES</button></td>
             </form></td>
-                <td><form action="/pizzas/<%= p.id %>delete?_method=DELETE" method="POST">
-                    <button>--X--</button>
+                <td class="admin-delete"><form action="/pizzas/<%= p.id %>?_method=DELETE" method="POST"  class="admin-delete">
+                    <button class="admin-delete">--X--</button>
             </tr>
         </form>
         <% }) %> 
@@ -113,7 +113,7 @@
                 <td><button>SUBMIT CHANGES</button></td>
             </form>
                 <td><form action="/toppings/<%= t.id %>?_method=DELETE" method="POST">
-                <button>--X--</button>
+                <button class="admin-delete">--X--</button>
             </form></td>
             </tr>
         <% }) %> 

@@ -12,7 +12,8 @@ var reviewSchema = new Schema ({
         required: true
     },
     content: String,
-    user: [{type: Schema.Types.ObjectId, ref: 'User'}],
+    username: String,
+    userId: String,
 }, {
     timeestamps: true,
 })
@@ -23,6 +24,7 @@ var restaurantSchema = new Schema ({
     reviews: [reviewSchema],
     pizzas: [{type: Schema.Types.ObjectId, ref: 'Pizza' }],
     location: String,
+    website: String,
     price: {
         type: String,
         enum: ['$', '$$', '$$$']
@@ -30,6 +32,7 @@ var restaurantSchema = new Schema ({
     image: {
         type: String
     },
+    rating: Number,
 }, {
     timeestamps: true,
 })

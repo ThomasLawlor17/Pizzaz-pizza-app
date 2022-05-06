@@ -1,46 +1,82 @@
 <%- include('../partials/header') %> 
-<h1><%= restaurant.name %></h1>
-<ul>
-    <li>Location: <%= restaurant.location %> </li>
-    <li>Pricing: <%= restaurant.price %> </li>
+<h1 class="show-title"><%= restaurant.name %></h1>
+<div class="show-container">
+<img class="show-image" src="<%= restaurant.image %>" alt="">
+<div class="show-info">
+    <h2>INFORMATION</h2>
+<ul class="show-list">
+    <li class="show-location"><div class="show-list-title">LOCATION: </div> <%= restaurant.location %> </li>
+    <li class="show-website"><a href="<%= restaurant.website %>"><button class="website-button">WEBSITE</button></a></li>
+    <li class="show-price"><div class="show-list-title">PRICES: </div> <%= restaurant.price %></li>
 </ul>
 <% if (user) { %> 
     <% if (!user.favouriteRestaurants.includes(restaurant.id)) { %>
     <div class="favourite-form"><form action="<%= restaurant.id %>/users" method="POST">
-   <button type="submit" name="restaurantId" value="<%= restaurant._id %>">ADD FAVOURITE</button>
+   <button class="favourite-button" type="submit" name="restaurantId" value="<%= restaurant._id %>">ADD FAVOURITE</button>
    </form></div>
    <% } if (user.favouriteRestaurants.includes(restaurant.id)) { %>
        <div class="favourite-form"><form action="<%= restaurant.id %>/users?_method=DELETE" method="POST">
-           <button type="submit" name="restaurantId" value="<%= restaurant._id %>">REMOVE FAVOURITE</button>
+           <button class="favourite-button" type="submit" name="restaurantId" value="<%= restaurant._id %>">REMOVE FAVOURITE</button>
            </form></div>
- <%  }} %> 
-<br><br>
+ <%  }} %>
+</div>
+<div class="show-reviews">
+    <div class="show-reviews-grid"> 
 <h2>Reviews</h2>
+<% let total = 0 %> 
 <% if (restaurant.reviews.length) { %>
-    <% let total = 0 %> 
     <% restaurant.reviews.forEach(function(rv) {%>
-        <%= total += rv.rating %>
-        <ul>
-            <li><%= rv.user %></li>
-            <li><%= rv.rating %></li>
-            <li><%= rv.content %></li>
+        <div class="review-each">
+            <div class="review-each-flex">
+        <% total += rv.rating %>
+        <ul class="review-list">
+            <li class="review-username"><%= rv.username %></li>
+            <li class="review-rating"><%= rv.rating %></li>
+            <% if (user) { %> 
+            <% if (rv.userId === user.id) { %> 
+            <li class="delete-review-form"><form class="delete-review-form" action="/reviews/<%=rv.id%>?_method=DELETE" method="POST">
+            <button class="delete-review-button">DELETE REVIEW</button></form>
+            <% }} %> 
+            </li>
         </ul>
-        <form action="/reviews/<%=rv.id%>?_method=DELETE" method="POST">
-        <button>X</button></form>
+        <div class="review-content"><%= rv.content %></div>
+            </div>
+    </div>
     <% }) %> 
+            <div class="total-rating"><%= (total / restaurant.reviews.length).toFixed(2) %></div>
+        </div>
     <% } %> 
-<br><br>
-<form action="/restaurants/<%= restaurant.id %>/reviews" method="POST">
-<label>Rating: </label>
-<select name="rating">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-</select>
-<label>Commments:</label>
-<input type="text" name="content">
-<input type="submit" value="Add Review">
-</form>
+</div>
+<div class="add-review">
+    <div class="add-review-grid">
+        <% if (user) { %>
+            <h2>ADD A REVIEW</h2>
+            <form class="add-review-form" action="/restaurants/<%= restaurant.id %>/reviews" method="POST">
+                <div class="review-select">
+                <label>RATING:  </label>
+                <select class="add-rating" name="rating">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select></div>
+                <div class="review-textarea">
+                <label>COMMENTS:  </label>
+                <textarea class="add-content" name="content"></textarea>
+                </div>
+                <div class="add-review-button-div">
+                <button class="add-review-button">ADD REVIEW</button>
+                </div>
+            </form>
+            <% } %> 
+        </div>
+    </div>
+</div>
+</div>
+<br><br><br><br><br><br><br>
+<script>let body = document.querySelector('body')
+body.style.backgroundColor = 'maroon'
+body.style.color = '#FDFBF6'</script>
+<div class="border"></div>
 <%- include('../partials/footer') %> 
