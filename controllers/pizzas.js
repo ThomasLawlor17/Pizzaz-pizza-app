@@ -76,6 +76,11 @@ function create(req, res) {
  //}
 }
 
+function base64_encode(image) {
+	var bitmap = fs.readFileSync(image);
+	return bitmap.toString("base64");
+}
+
 function show(req, res) {
 	Pizza.findById(req.params.id, function (err, pizza) {
 		res.render("pizzas/show", { title: pizza.name, pizza, user: req.user });
