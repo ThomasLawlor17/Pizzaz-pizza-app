@@ -8,9 +8,10 @@ module.exports = {
 
 function index(req, res) {
     if (req.user) {
-    Restaurant.find({ $sample: {size: 1 } }, function(err, restaurant) {
+    Restaurant.findOne({ $sample: {size: 1 } }, function(err, restaurant) {
         Pizza.find({ $sample: {size: 1 }}, function(err, pizza) {
             User.findById(req.user.id, function(err, user) {
+                console.log(pizza, restaurant)
                 res.render('randomize/index', {title: 'RANDOMIZE', user, pizza, restaurant})
             })
         })
