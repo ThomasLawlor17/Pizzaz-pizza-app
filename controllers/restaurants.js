@@ -74,7 +74,6 @@ function newRestaurant(req, res) {
 
 function create(req, res) {
 	// If restaurant name exists don't allow
-	if (Restaurant.findOne({ name: req.body.name } === null)) {
 		// If picture is uploaded
 		if (req.file) {
 			console.log(req.file);
@@ -110,11 +109,8 @@ function create(req, res) {
 				res.redirect(`/restaurants/${restaurant.id}`);
 			});
 		}
-	} else {
-	// if restaurant exists redirect to index
-    res.redirect('/restaurants')
-  }
-}
+	}
+
 
 function show(req, res) {
 	Restaurant.findById(req.params.id, function (err, restaurant) {

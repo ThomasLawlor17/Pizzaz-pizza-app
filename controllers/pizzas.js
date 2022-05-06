@@ -33,7 +33,7 @@ function newPizza(req, res) {
 
 function create(req, res) {
 	// if pizza does not exist yet
-	if (Pizza.findOne({ name: req.body.name } === null)) {
+	//if (Pizza.findOne({ name: req.body.name } === null)) {
 		// if image uploaded
 		if (req.file) {
 			console.log(req.file);
@@ -70,10 +70,10 @@ function create(req, res) {
 				res.redirect(`/pizzas`);
 			});
 		}
-	} else {
+	//} else {
 	// if pizza name alreaddy exists
-    res.redirect('/pizzas/new')
-  }
+    //res.redirect('/pizzas/new')
+ //}
 }
 
 function show(req, res) {
