@@ -98,7 +98,7 @@ function create(req, res) {
 				const restaurant = new Restaurant(req.body);
 				restaurant.save(function (err, restaurant) {
 					console.log(restaurant);
-					res.redirect(`/restaurant/${restaurant.id}`);
+					res.redirect(`/restaurants/${restaurant.id}`);
 				});
 			});
 		} else {

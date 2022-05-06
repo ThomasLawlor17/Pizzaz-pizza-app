@@ -1,3 +1,8 @@
+const request = require('request')
+const fs = require("fs");
+
+
+
 const Pizza = require("../models/pizza");
 const Restaurant = require("../models/restaurant");
 const Topping = require("../models/toppping");
@@ -56,9 +61,9 @@ function create(req, res) {
 				console.log(body);
 				req.body.image = body.data.link;
 				const pizza = new Pizza(req.body);
-				restaurant.save(function (err, pizza) {
+				pizza.save(function (err, pizza) {
 					console.log(pizza);
-					res.redirect(`/pizzas/${pizzas.id}`);
+					res.redirect(`/pizzas/${pizza.id}`);
 				});
 			});
 		} else {
