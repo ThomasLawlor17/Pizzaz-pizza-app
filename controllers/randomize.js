@@ -18,7 +18,7 @@ function index(req, res) {
 } else {
     Restaurant.findOne({ $sample: {size: 1 } }, function(err, restaurant) {
         Pizza.findOne({ $sample: {size: 1 }}, function(err, pizza) {
-                res.render('randomize/index', {title: 'RANDOMIZE', pizza, restaurant})
+                res.render('randomize/index', {title: 'RANDOMIZE', user: req.params.user, pizza, restaurant})
         })
     })
 }}
